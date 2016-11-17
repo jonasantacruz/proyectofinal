@@ -1,16 +1,14 @@
-<!--DOCTYPE html -->
-<html>
+{% extends "base.html" %}
 
-<body>
-<h1>{{ title }}</h1>
+{% block head_title %}
+{{ instance.title }} | {{ block.super }}
+{% endblock head_title %}
 
-{{ instance.title }}<br/>
-{{ instance.content }}<br/>
-{{ instance.timestamp }}<br/>
-{{ instance.updated }}<br/>
+
+{% block content %}
+<div class='col-sm-6 col-sm-offset-3'>
+<h1>{{ title }}<small>{{ instance.timestamp }}</small></h1>
+{{ instance.content|linebreaks }}<br/>
 {{ instance.id }}<br/>
-
-
-</body>
-
-</html>
+</div>
+{% endblock content %}
