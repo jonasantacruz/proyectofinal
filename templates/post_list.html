@@ -3,24 +3,48 @@
 
 
 <div class='col-sm-8 col-sm-offset-2'>
-  <h1>{{ title }} is working!</h1>
-<div class="row">
+  <h1>{{ title }}</h1>
+<form method='GET' action=''>
+<input type='text' name='q' placeholder='Search post' value='{{ request.GET.q }}'/>
+<input type='submit' value='Search' />
+</form>
 {% for obj in objects_list %}
-
+<div class="row">
   <div class="col-sm-12">
     <div class="thumbnail">
-      <!--img src="..." alt="..."-->
+      {% if obj.image %}
+      <img src='{{ obj.image.url }}' class='img-responsive' />
+      {% endif %}
       <div class="caption">
-        <h3><a href='{{ obj.get_absolute_url }}'>{{ obj.title }}</a><small>{{ obj.timestamp|timesince }}</small></h3>
+        {% if obj.draft %}<h3>Solo para Staff: Borrador</h3>{% endif %} {% if obj.publish > today %}<h3>Futuro Post</h3> {% endif %}
+        <h3><a href='{{ obj.get_absolute_url }}'>{{ obj.title }}</a><small>{{ obj.publish }}</small></h3>
+        {% if obj.user.get_full_name %}<p>Publicado por: {{ obj.user.get_full_name }}</p>{% endif %}
         <p>{{ obj.content|linebreaks|truncatechars:120 }}</p>
         <p><a href="{{ obj.get_absolute_url }}" class="btn btn-primary" role="button">View</a></p>
       </div>
     </div>
   </div>
-
-{% cycle "" "<div class='col-sm-12'><hr/></div></div><div class='row'>" %}
+<hr/>
+</div>
 {% endfor %}
+
+
+<div class="pagination">
+    <span class="step-links">
+        {% if objects_list.has_previous %}
+            <a href="?{{ page_request_var }}={{ objects_list.previous_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ objects_list.number }} of {{ objects_list.paginator.num_pages }}.
+        </span>
+
+        {% if objects_list.has_next %}
+            <a href="?{{ page_request_var }}={{ objects_list.next_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">next</a>
+        {% endif %}
+    </span>
 </div>
 
+</div>
 </div>
 {% endblock content %}
