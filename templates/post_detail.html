@@ -15,7 +15,9 @@
 {% if instance.user.get_full_name %}
 <p>Publicado por: {{ instance.user.get_full_name }}</p>
 {% endif %}
-
+<a class="btn btn-default" href="/post/"><span class="glyphicon glyphicon-hand-up"></span></span></a>
+<a class="btn btn-default" href="{{ request.build_absolute_uri }}edit/"><span class="glyphicon glyphicon-pencil"></span></a>
+<a class="btn btn-default" href="{{ request.build_absolute_uri }}delete/"><span class="glyphicon glyphicon-remove"></span></a>
 <p><div class="fb-like" data-href="{{ request.build_absolute_uri }}" data-layout="standard" data-action="like" data-show-faces="false" data-share="true"></div><hr/></p>
 
 <!--<p>

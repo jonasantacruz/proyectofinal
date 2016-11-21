@@ -26,6 +26,7 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     #url(r'^post/$', post_view.post_home),
     url(r'^post/', include("post.urls", namespace='post')),
+
     #url(r'^post/$', <appname>.views.<function_name>"),
 ]
 
