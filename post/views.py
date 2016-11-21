@@ -40,7 +40,8 @@ def post_detail(request, id=None): #retrive
     context = {
         "title":instance.title,
         "instance": instance,
-        "share_string": share_string
+        "share_string": share_string,
+        #s"categoria" : categoria
     }
     return render(request, "post_detail.html", context)
 

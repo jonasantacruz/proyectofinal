@@ -11,9 +11,11 @@
   {% if instance.image %}
   <img src='{{ instance.image.url }}' class='img-responsive' />
   {% endif %}
-<h1>{{ title }}<small>{% if instance.draft %}<span style='color:red;'>Draft</span> {% endif %}{{ instance.publish }}</small></h1>
+<h1>{{ title }}  <small>{% if instance.draft %}<span style='color:red;'>Draft</span> {% endif %}{{ instance.publish }}</small></h1>
+</br><p>Categoria {{instance.categoria }} </p>
 {% if instance.user.get_full_name %}
 <p>Publicado por: {{ instance.user.get_full_name }}</p>
+<p>Categoria: {{ categoria }}</p>
 {% endif %}
 <a class="btn btn-default" href="/post/"><span class="glyphicon glyphicon-hand-up"></span></span></a>
 <a class="btn btn-default" href="{{ request.build_absolute_uri }}edit/"><span class="glyphicon glyphicon-pencil"></span></a>

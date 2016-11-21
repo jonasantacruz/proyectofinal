@@ -7,7 +7,11 @@ from django.utils import timezone
 
 #from django.utils.text import slugify
 # Create your models here.
-
+class Categoria(models.Model):
+    nombre = models.CharField(max_length=150)
+    def __str__(self):
+        return self.nombre
+        
 class PostManager(models.Manager):
     def active(self, *args, **kwargs):
         #Post.objects.all() = super(PostManager, self).all()
@@ -34,7 +38,7 @@ class Post(models.Model):
     publish = models.DateField(auto_now=False, auto_now_add=False)
     updated = models.DateTimeField(auto_now=True, auto_now_add=False)
     timestamp = models.DateTimeField(auto_now=False, auto_now_add=True)
-
+    categoria = models.ForeignKey(Categoria, null=True, blank=True, on_delete=models.CASCADE)
 
     objects = PostManager()
 
