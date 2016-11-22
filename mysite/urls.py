@@ -18,6 +18,7 @@ from django.conf import settings
 from django.conf.urls import include, url
 from django.conf.urls.static import static
 from django.contrib import admin
+from django.contrib.auth.views import login
 
 #from contact import views as contact_view
 #from post import views as post_view
@@ -26,6 +27,7 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     #url(r'^post/$', post_view.post_home),
     url(r'^post/', include("post.urls", namespace='post')),
+    url(r'^$', login,{'template_name':'index.html'}, name='login'),
 
     #url(r'^post/$', <appname>.views.<function_name>"),
 ]

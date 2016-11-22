@@ -7,7 +7,7 @@
 <form method='GET' action=''>
 <input type='text' name='q' placeholder='Search post' value='{{ request.GET.q }}'/>
 <input type='submit' value='Search' />
-<a href="http://127.0.0.1:8000/post/create" class="top-menu"><span class="glyphicon glyphicon-plus"></span></a>
+<a href="/post/create/" class="top-menu"><span class="glyphicon glyphicon-plus"></span></a>
 </form>
 {% for obj in objects_list %}
 <div class="row">
